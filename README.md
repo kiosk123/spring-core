@@ -2,10 +2,23 @@
 
 ## 목차
 ### 1. 자바로 POJO 구성하기
-- @Configuration을 이용하여 구성 클래스를 작성한다.  
-- 구성 클래스 @Bean을 이용하여 빈 설정을 한다.  
-- ApplicationContext를 이용하여 설정한 빈을 가져올 수 있다.  
-- 구성 클래스가 아닌 클래스 선언부에서 빈 선언시 @Component(@Repository, @Service, @Controller)를 이용한다.  
-- @ComponentScan을 이용해서 IoC 컨테이너 구성에 필요한 빈들을 검색한다 - **basePackages 설정 필수**  
+- **@Configuration**을 이용하여 구성 클래스를 작성한다.  
+- 구성 클래스에서 빈 선언시 **@Bean**을 이용하여 빈 선언을 한다.  
+- **ApplicationContext**를 이용하여 설정한 빈을 가져올 수 있다.  
+- 구성 클래스가 아닌 클래스 선언부에서 빈 선언시 **@Component(@Repository, @Service, @Controller)**를 이용한다.  
+- **@ComponentScan**을 이용해서 IoC 컨테이너 구성에 필요한 빈들을 검색한다 - **basePackages 설정 필수**  
+- 스프링 빈 스코프(**@Scope)** - @Scope("prototype") 형식으로 설정
+|스코프|설명|
+|--|--|
+|singleton|IOC 컨테이너당 빈 인스턴스 하나 생성|
+|prototype|요청할 때마다 빈 인스턴스 생성|
+|request|HTTP 요청당 하나의 빈 인스턴스 생성. 웹애플리케이션 컨텍스트에만 해당|
+|session|HTTP 세션당 빈 인스턴스 하나를 생성. 웹 애플리케이션 컨텍스트에만 해당|
+|globalSession|전역 HTTP 세션당 빈 인스턴스 하나를 생성. 포털 애플리케이션 컨텍스트에만 해당|
 
-
+### 2. Properties 파일을 이용한 설정과 Resource를 이용한 파일 읽기
+- **@PropertySource**와 **PropertySourcesPlaceholderConfigurer**를 **@Bean**으로 설정하여 Properties 파일의 정보를 읽어 들일 수 있다.
+- Resource 인터페이스를 이용해서 classpath 상의 파일을 읽어들일 수 있다.
+  - 구현체로는 FileSystemResource, UrlResource, ClassPathResource등이 있다.
+- @PostConstruct를 사용하여 IoC 컨테이너에서 빈이 생성되고 난 뒤에 메소드를 호출 할 수 있다. (pojo.BannerLoader 참고)
+  - **@PostConstruct를 사용하기 위해서는 javax.annotation-api가 필요한데 java9 부터 포함되지 않으므로 gradle에 의존성을 추가해야 한다.**

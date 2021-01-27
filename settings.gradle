@@ -10,3 +10,4 @@
 rootProject.name = 'spring-core'
 
 include 'project-01-pojo'
+include 'project-02-properties'
