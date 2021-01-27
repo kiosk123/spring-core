@@ -22,3 +22,9 @@
   - 구현체로는 FileSystemResource, UrlResource, ClassPathResource등이 있다.
 - @PostConstruct를 사용하여 IoC 컨테이너에서 빈이 생성되고 난 뒤에 메소드를 호출 할 수 있다. (pojo.BannerLoader 참고)
   - **@PostConstruct를 사용하기 위해서는 javax.annotation-api가 필요한데 java9 부터 포함되지 않으므로 gradle에 의존성을 추가해야 한다.**
+
+### 3. 다국어 메시지 설정
+- **ReloadableMessageSource**를 이용하여 리소스 번들 메시지를 처리할 수 있다. - (config.MessageConfiguration 참고)
+- 리소스 번들 메시지 파일은 **파일prefix_ISO언어코드_ISO지역코드.properties**로 구성한다. (ex - messages_en_US.properties)
+  - 지역 코드 없이 ISO 언어코드로만 구성된 리소스 번들 메시지 파일도 구성할 수 있다. (ex - messages_en.properties)
+
