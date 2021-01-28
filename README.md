@@ -76,7 +76,7 @@ AbstractFactoryBean을 상속받아 팩토리 클래스를 구현한다.
 - 팩토리 클래스 - (pojo.DiscountFactoryBean)
 - 팩토리 빈 생성 - (config.PojoConfiguration)
 
-## 7. POJO에서 IOC 컨테이너 리소스로 접근
+### 7. POJO에서 IOC 컨테이너 리소스로 접근
 
 POJO에서 IOC 컨테이너 리소스로 접근하기 위해서는 *Aware 인터페이스를 POJO에서 구현해서 해야한다.
 
