@@ -100,15 +100,35 @@ Aware 인터페이스의 세터 메서드는 스프링이 빈 프로퍼티를 �
 순서는 다음과 같다
 
 1. 생성자나 팩토리 메서드를 호출해 빈 인스턴스 생성  
-
 2. 빈 프로퍼티에 값, 빈 레퍼런스를 설정  
-
 3. **Aware 인터페이스에 정의한 세터 메서드를 호출**  
-
 4. 빈 인스턴스를 각 빈 후처리기에 있는 postProcessBeforeInitialization() 메서드로 넘겨초기화 콜백 메서드를 호출  
-
 5. 빈 인스턴스를 각 빈 후처리기 postProcessAfterInitialization() 메서드로 넘김
-
 6. 컨테이너가 종료되면 폐기 콜백 메서드(@PreDestroy)를 호출  
 
 - BeanNameAware 구현 - (pojo.Cashier)
+
+### 8. TaskExecutor로 동시성 적용
+
+### 9. POJO끼리 애플리케이션 이벤트 주고 받기
+
+#### 구현 순서
+
+1.ApplicationEvent 상속받아 이벤트를 정의한다 - (event.CheckoutEvent)  
+쇼핑카드를 체크아웃하면 Cashier빈이 체크아웃 시간이 기록된 CheckoutEvent를 발행한다.  
+
+2.ApplicationEventPublisherAware 인터페이스를 구현하여 이벤트 발생기를 정의한다. - (event.Cashier)  
+이벤트를 인스턴스화한 다음 애플리케이션 이벤트 발행기에서 publishEvent() 메서드를 호출하면  
+이벤트가 발행된다. 이벤트 발행기는 ApplicationEventPublisherAware 인터페이스 구현 클래스에서 가져오거나,  
+
+또는 ApplicationEventPublisher를 참조하는 필드에 @Autowire를 설정하여 자동 참조하게 한다.  
+@Autowire를 이용한 자동 참조일 경우 ApplicationEventPublisherAware 인터페이스를 구현 안해도 된다.  
+
+3.ApplicationListener 인터페이스를 구현하여 빈으로 등록(@Component, @Bean)하여 이벤트를 리스닝한다 - (event.CheckoutListener)  
+ApplicationListener<T>를 구현한 애플리케이션 컨텍스트에 정의된 빈은 타입 변수 '<T>'에 매치되는,  
+이벤트를 모두 알림받는다. 이런 식으로  ApplicationContextEvent같은 특정 그룹의 이벤트들을 리스닝 한다.  
+4.2부터는 ApplicationListenr 인터페이스 없이 @EventListener만 메서드에 붙여도 이벤트 리스너로 만들수 있다.  
+
+4.전체 이벤트를 리스닝할 리스너를 등록한다.  
+등록절차는 ApplicationListener 구현체를 빈인스턴스를 선언하거나 컴포넌트 스캐닝으로 감지한다.  
+ApplicationListener 인터페이스를 구현한 빈과 @EventListener를 붙인 메서드가 위치한 빈을 인지하여 이들이 관심있는 이벤트를 각각 통지한다.
