@@ -44,8 +44,10 @@
 
 ### 5. 빈 후처리기로 POJO 검증 및 수정
 
-빈 후처리기를 이용하여 초기화 콜백 메서드(@Bean(initMethod), @PostConstruct) 전 후에 원하는 로직을 적용할 수 있다.
+빈 후처리기를 이용하여 초기화 콜백 메서드(@Bean(initMethod), @PostConstruct) 전 후에 원하는 로직을 적용할 수 있다.  
+BeanPostProcessor 인터페이스를 구현한 클래스를 빈으로 등록한다.
 
 #### 5-1. 모든 빈 인스턴스를 처리하는 후처리기
 
+config.AuditCheckBeanPostProcessor
 

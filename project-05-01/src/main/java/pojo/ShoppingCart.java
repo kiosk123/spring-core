@@ -1,4 +1,4 @@
-package com.apress.springrecipes.shop;
+package pojo;
 
 import java.util.ArrayList;
 import java.util.List;

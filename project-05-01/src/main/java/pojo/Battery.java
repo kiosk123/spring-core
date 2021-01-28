@@ -1,4 +1,4 @@
-package com.apress.springrecipes.shop;
+package pojo;
 
 public class Battery extends Product {
 

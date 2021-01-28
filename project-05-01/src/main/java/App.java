@@ -1,14 +1,23 @@
-package com.apress.springrecipes.shop;
+
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
-public class Main {
+import config.PojoConfiguration;
+import pojo.Cashier;
+import pojo.Product;
+import pojo.ShoppingCart;
+
+public class App {
 
     public static void main(String[] args) throws Exception {
 
         ApplicationContext context =
                 new GenericXmlApplicationContext("appContext.xml");
+
+        // ApplicationContext context = 
+        //     new AnnotationConfigApplicationContext(PojoConfiguration.class);
 
         Product aaa = (Product) context.getBean("aaa");
         Product cdrw = (Product) context.getBean("cdrw");

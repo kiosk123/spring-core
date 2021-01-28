@@ -1,15 +1,17 @@
-package com.apress.springrecipes.shop.config;
+package config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import com.apress.springrecipes.shop.Battery;
-import com.apress.springrecipes.shop.Cashier;
-import com.apress.springrecipes.shop.Disc;
-import com.apress.springrecipes.shop.Product;
+import pojo.Battery;
+import pojo.Cashier;
+import pojo.Disc;
+import pojo.Product;
 
+@ComponentScan("pojo")
 @Configuration
-public class ShopConfiguration {
+public class PojoConfiguration {
 
     @Bean
     public Product aaa() {

@@ -1,4 +1,4 @@
-package com.apress.springrecipes.shop;
+package pojo;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
