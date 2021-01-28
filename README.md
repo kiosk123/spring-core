@@ -54,3 +54,18 @@ BeanPostProcessor 인터페이스를 구현한 클래스를 빈으로 등록한�
 @Required가 설정된 프로퍼티에 값이 설정 되어 있지 않다면 BeanInitializationException 예외를 던진다.
 
 
+### 6. 팩토리로 POJO 생성
+
+#### 6-1. 정적 팩터리 메서드로 POJO 생성
+
+- 팩토리 클래스 - (pojo.ProductCreator)
+- 팩토리 빈 생성 - (config.PojoConfiguration)
+
+#### 6-2. 인스턴스 팩터리 메서드로 POJO 생성
+
+Map을 구성해서 빈 정보를 담아서 POJO를 생성한다.
+
+- 팩토리 클래스 - (pojo.ProductCreator)
+- 팩토리 빈 생성 - (config.PojoConfiguration)
+
+
