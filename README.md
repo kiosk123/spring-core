@@ -75,3 +75,34 @@ AbstractFactoryBean을 상속받아 팩토리 클래스를 구현한다.
 
 - 팩토리 클래스 - (pojo.DiscountFactoryBean)
 - 팩토리 빈 생성 - (config.PojoConfiguration)
+
+#### 7. POJO에서 IOC 컨테이너 리소스로 접근
+
+POJO에서 IOC 컨테이너 리소스로 접근하기 위해서는 *Aware 인터페이스를 POJO에서 구현해서 해야한다.
+
+|Aware 인터페이스|대상 리소스 타입|
+|--------------|---|
+|BeanNameAware|IOC 컨테이너에 구성한 인스턴스의 빈 이름|
+|BeanFactoryAware|현재 빈 팩토리, 컨테이너 서비스를 호출하는 데 쓰임|
+|ApplicationContextAware|현재 애플리케이션 컨텍스트, 컨테이너 서비스를 호출하는 데 쓰임|
+|MessageSourceAware|메시지 소스, 텍스트 메시지를 해석하는 데 쓰임|
+|ApplicationEventPublisherAware|애플리케이션 이벤트 발행기(퍼블리셔), 애플리케이션 이벤트를 발행하는데 쓰임|
+|ResourceLoaderAware|리소스 로더, 외부 리소스를 로드하는 데 쓰임|
+|EnvironmentAware|ApplicationContext 인터페이스에 묶인 org.springframework.core.env.Environment 인스턴스|
+
+Aware 인터페이스의 세터 메서드는 스프링이 빈 프로퍼티를 설정한 이후, 초기화 콜백 메서드(@PostConstructor)를 호출하기 이전에 호출한다.  
+순서는 다음과 같다
+
+1. 생성자나 팩토리 메서드를 호출해 빈 인스턴스 생성  
+
+2. 빈 프로퍼티에 값, 빈 레퍼런스를 설정  
+
+3. **Aware 인터페이스에 정의한 세터 메서드를 호출**  
+
+4. 빈 인스턴스를 각 빈 후처리기에 있는 postProcessBeforeInitialization() 메서드로 넘겨초기화 콜백 메서드를 호출  
+
+5. 빈 인스턴스를 각 빈 후처리기 postProcessAfterInitialization() 메서드로 넘김
+
+6. 컨테이너가 종료되면 폐기 콜백 메서드(@PreDestroy)를 호출  
+
+- BeanNameAware 구현 - (pojo.Cashier)
