@@ -68,4 +68,10 @@ Map을 구성해서 빈 정보를 담아서 POJO를 생성한다.
 - 팩토리 클래스 - (pojo.ProductCreator)
 - 팩토리 빈 생성 - (config.PojoConfiguration)
 
+#### 6-3. 스프링 팩토리 빈(AbstractFactoryBean)으로 POJO 생성
 
+AbstractFactoryBean을 상속받아 팩토리 클래스를 구현한다.  
+
+
+- 팩토리 클래스 - (pojo.DiscountFactoryBean)
+- 팩토리 빈 생성 - (config.PojoConfiguration)
