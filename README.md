@@ -47,7 +47,10 @@
 빈 후처리기를 이용하여 초기화 콜백 메서드(@Bean(initMethod), @PostConstruct) 전 후에 원하는 로직을 적용할 수 있다.  
 BeanPostProcessor 인터페이스를 구현한 클래스를 빈으로 등록한다.
 
-#### 5-1. 모든 빈 인스턴스를 처리하는 후처리기
+- 모든 빈 인스턴스를 처리하는 후처리기 - (config.AuditCheckBeanPostProcessor)
+- 주어진 빈 인스턴스만 처리하는 후 처리기 - (config.ProductCheckBeanPostProcessor)
 
-config.AuditCheckBeanPostProcessor
+@Required를 이용하여 특정 빈 프로퍼티가 설정되었는지 확인 할 수 있다. - (pojo.Disc)
+@Required가 설정된 프로퍼티에 값이 설정 되어 있지 않다면 BeanInitializationException 예외를 던진다.
+
 

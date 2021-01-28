@@ -1,5 +1,7 @@
 package pojo;
 
+import org.springframework.beans.factory.annotation.Required;
+
 public class Disc extends Product {
 
     private int capacity;
@@ -17,6 +19,7 @@ public class Disc extends Product {
         return capacity;
     }
 
+    @Required
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
