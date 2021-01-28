@@ -42,4 +42,10 @@
 - @Lazy를 이용해서 POJO가 실제로 참조되기 전까지 빈 생성 타임을 늦출 수 있다. - (pojo.ShoppingCart)
 - @DependsOn으로 설정된 빈의 초기화를 먼저 실행시켜 초기화 순서를 설정 할 수 있다. - (config.SequenceConfiguration)
 
+### 5. 빈 후처리기로 POJO 검증 및 수정
+
+빈 후처리기를 이용하여 초기화 콜백 메서드(@Bean(initMethod), @PostConstruct) 전 후에 원하는 로직을 적용할 수 있다.
+
+#### 5-1. 모든 빈 인스턴스를 처리하는 후처리기
+
 
